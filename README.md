@@ -22,22 +22,21 @@ Game ini ringan, cepat, dan dapat dimainkan langsung di browser tanpa instalasi 
 
 ## 🎮 Fitur Game
 
-- ✨ **Iris buah dengan klik mouse** – Slice buah untuk dapat poin
+- ✨ **Iris buah dengan geser krusor mouse** – Slice buah untuk dapat poin
 - 💣 **Bom = Game Over** – Hindari bom atau permainan berakhir
-- 🔁 **Restart instan** – Cukup klik di mana saja untuk main lagi
+- 🔁 **Restart instan** – Cukup klik restart untuk main lagi
 - 📈 **Score system** – Semakin banyak buah, semakin tinggi skor
 - ⚡ **Performa tinggi** – Ringan & berjalan smooth di semua browser
-- 🖥️ **Responsive design** – Full screen canvas otomatis menyesuaikan layar
 - 🔓 **Open-source** – Kode bebas dipelajari dan dimodifikasi
 
 ---
 
 ## 🕹️ Cara Bermain
 
-1. **Klik buah** untuk mendapatkan skor (+10 poin per buah)
-2. **Jangan klik bom** 💣 – Sekali kena = Game Over!
+1. **Klik buah** untuk mendapatkan skor (+1 poin per buah)
+2. **Jangan kena bom** 💣 – Sekali kena = Game Over!
 3. Buah akan terus bermunculan dari bawah layar
-4. Kalau **Game Over**, klik layar untuk restart
+4. Kalau **Game Over**, klik tombol restart untuk restart
 
 **Tips:** Fokus pada buah yang jatuh lambat terlebih dahulu!
 
@@ -64,10 +63,10 @@ fruit-slice/
 ├── game.js             # Logic game (Canvas API + JavaScript)
 ├── README.md           # Dokumentasi project
 └── assets/             # Asset gambar (opsional)
-    ├── fruits/
-    │   ├── watermelon.png
-    │   ├── apple.png
-    │   └── orange.png
+    ├── fruits1.png
+    ├── fruits2.png
+    ├── fruits3.png
+    ├── splash.png
     └── bomb.png
 ```
 
@@ -78,17 +77,17 @@ fruit-slice/
 ### Method 1: Clone Repository
 ```bash
 # Clone repository
-git clone https://github.com/bruryansah/fruit-slice.git
+git clone https://github.com/bruryansah/Fruit-Slice.git
 
 # Masuk ke folder
-cd fruit-slice
+cd Fruit-Slice
 
 # Buka file index.html di browser
 # Atau gunakan Live Server (VSCode extension)
 ```
 
 ### Method 2: Download ZIP
-1. Download ZIP dari [GitHub Repository](https://github.com/bruryansah/fruit-slice)
+1. Download ZIP dari [GitHub Repository](https://github.com/bruryansah/Fruit-Slice)
 2. Extract file ZIP
 3. Buka `index.html` di browser
 
@@ -113,31 +112,6 @@ cd fruit-slice
 
 ---
 
-## 🎨 Customization
-
-Kamu bisa customize game dengan mudah:
-
-### Mengubah Kecepatan Spawn
-```javascript
-// Di game.js, cari bagian spawn timing
-const SPAWN_INTERVAL = 1000; // Ubah nilai ini (dalam ms)
-```
-
-### Menambah Jenis Buah
-```javascript
-const fruits = [
-  { name: 'watermelon', color: '#FF6B6B', score: 10 },
-  { name: 'apple', color: '#4ECDC4', score: 15 },
-  { name: 'banana', color: '#FFE66D', score: 20 } // Tambah di sini
-];
-```
-
-### Mengubah Difficulty
-```javascript
-// Ubah kecepatan jatuh object
-const GRAVITY = 0.5; // Semakin besar = semakin cepat jatuh
-```
-
 ---
 
 ## 🐛 Known Issues
@@ -150,19 +124,19 @@ const GRAVITY = 0.5; // Semakin besar = semakin cepat jatuh
 
 ## 📋 Roadmap & TODO
 
-### v1.1 (Coming Soon)
+### v1.1 (Coming Soon) *kalo niat & ada waktu
 - [ ] Sound effects (slice sound, bomb explosion, background music)
 - [ ] Particle effects saat buah teriris
 - [ ] Combo system (slice 3+ buah sekaligus)
 - [ ] Mobile touch support (swipe gesture)
 
-### v1.2 (Future)
+### v1.2 (Future) (Coming Soon) *kalo niat & ada waktu
 - [ ] Multiple game modes (Classic, Time Attack, Zen Mode)
 - [ ] Local highscore dengan localStorage
 - [ ] Power-ups (slow motion, double score, bomb shield)
 - [ ] Leaderboard online dengan Firebase
 
-### v2.0 (Long-term)
+### v2.0 (Long-term) (Coming Soon) *kalo niat & ada waktu
 - [ ] Multiplayer mode
 - [ ] Achievement system
 - [ ] Berbagai tema (tropical, winter, desert)
@@ -216,17 +190,17 @@ Lihat file [LICENSE](LICENSE) untuk detail lengkap.
 ## 📞 Kontak & Support
 
 Punya pertanyaan atau saran? Jangan ragu untuk:
-- 🐛 [Report Bug](https://github.com/bruryansah/fruit-slice/issues)
-- 💡 [Request Feature](https://github.com/bruryansah/fruit-slice/issues)
+- 🐛 [Report Bug](https://github.com/bruryansah/Fruit-Slice/issues)
+- 💡 [Request Feature](https://github.com/bruryansah/Fruit-Slice/issues)
 - ⭐ Kasih **Star** jika project ini bermanfaat!
 
 ---
 
 ## 📊 Stats
 
-![GitHub stars](https://img.shields.io/github/stars/bruryansah/fruit-slice?style=social)
-![GitHub forks](https://img.shields.io/github/forks/bruryansah/fruit-slice?style=social)
-![GitHub watchers](https://img.shields.io/github/watchers/bruryansah/fruit-slice?style=social)
+![GitHub stars](https://img.shields.io/github/stars/bruryansah/Fruit-Slice?style=social)
+![GitHub forks](https://img.shields.io/github/forks/bruryansah/Fruit-Slice?style=social)
+![GitHub watchers](https://img.shields.io/github/watchers/bruryansah/Fruit-Slice?style=social)
 
 ---
 
