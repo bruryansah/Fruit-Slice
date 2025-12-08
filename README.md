@@ -183,7 +183,7 @@ Lihat file [LICENSE](LICENSE) untuk detail lengkap.
 **Bruryansah**
 
 [![GitHub](https://img.shields.io/badge/GitHub-bruryansah-black?logo=github)](https://github.com/bruryansah)
-[![Portfolio](https://img.shields.io/badge/Portfolio-Visit-blue)](https://bruryansah.github.io)
+[![Portfolio](https://img.shields.io/badge/Portfolio-Visit-blue)](https://bruryansah.github.io/portfolio/)
 
 ---
 
