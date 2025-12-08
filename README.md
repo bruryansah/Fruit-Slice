@@ -14,7 +14,7 @@ Game ini ringan, cepat, dan dapat dimainkan langsung di browser tanpa instalasi 
 
 ## 🚀 Demo
 
-**[🎮 PLAY NOW - Klik di sini!](https://brurnyansah.github.io/fruit-slice/)**
+**[🎮 PLAY NOW - Klik di sini!](https://brurnyansah.github.io/Fruit-Slice/)**
 
 > Game berjalan di semua browser modern (Chrome, Firefox, Safari, Edge)
 
