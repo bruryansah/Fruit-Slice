@@ -4,15 +4,17 @@ const overlay = document.getElementById("overlay");
 const finalScoreEI = document.getElementById("finalScore");
 const restartBtn = document.getElementById("restartBtn");
 
+// RESPONSIVE CANVAS (MOBILE FRIENDLY)
 function fitCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 }
-
 fitCanvas();
-window.addEventListener('resize',fitCanvas);
+window.addEventListener('resize', fitCanvas);
 
-// Game state
+document.body.style.touchAction = "none"; 
+
+// GAME STATE
 let fruits = [];
 let slices = [];
 let score = 0;
@@ -25,13 +27,13 @@ const fruitImages = [
     "assets/fruits3.png"
 ];
 
-const bombImg = new Image ();
+const bombImg = new Image();
 bombImg.src = "assets/bomb.png";
 
-const splashImg = new Image ();
+const splashImg = new Image();
 splashImg.src = "assets/splash.png";
 
-// create item
+// CREATE FRUIT / BOMB
 function randomItem() {
     const itemType = Math.random() < 0.15 ? "bomb" : "fruit";
     let img = new Image();
@@ -54,13 +56,12 @@ function randomItem() {
     };
 }
 
-
-function spawnItem(){
+function spawnItem() {
     if (!gameOver)
         fruits.push(randomItem());
 }
 
-function startSpawning(){
+function startSpawning() {
     if (spawnintervalid)
         clearInterval(spawnintervalid);
     spawnintervalid = setInterval(spawnItem, 800);
@@ -73,17 +74,16 @@ function stopSpawning() {
     }
 }
 
-// game loop
+// GAME LOOP
 function update() {
-    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     if (gameOver) {
         drawScore();
         return;
     }
 
-    // draw items
-    for (let i = fruits.length - 1; i>=0; i--){
+    for (let i = fruits.length - 1; i >= 0; i--) {
         const obj = fruits[i];
         obj.x += obj.vx;
         obj.y += obj.vy;
@@ -91,13 +91,12 @@ function update() {
 
         ctx.drawImage(obj.img, obj.x, obj.y, obj.w, obj.h);
 
-        if (obj.y > canvas.height + 100){
-            fruits.splice(i,1);
+        if (obj.y > canvas.height + 100) {
+            fruits.splice(i, 1);
         }
     }
 
-    //draw slice
-    for (let i = slices.length - 1; i>= 0; i--){
+    for (let i = slices.length - 1; i >= 0; i--) {
         const s = slices[i];
         ctx.globalAlpha = s.alpha;
         ctx.drawImage(s.img, s.x, s.y, 80, 80);
@@ -117,8 +116,8 @@ function drawScore() {
     ctx.fillText("Score :" + score, 20, 50);
 }
 
-//staet gamehjbk
-function startGame(){
+// START GAME
+function startGame() {
     fruits = [];
     slices = [];
     score = 0;
@@ -128,55 +127,82 @@ function startGame(){
     requestAnimationFrame(update);
 }
 
-canvas.addEventListener("pointermove", (e) => {
+// SLICE LOGIC (PC + MOBILE)
+function handleSlice(x, y) {
     if (gameOver) return;
-    const rect = canvas.getBoundingClientRect();
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
 
-    for (let i = fruits.length - 1; i>= 0; i--) {
+    for (let i = fruits.length - 1; i >= 0; i--) {
         const obj = fruits[i];
         if (
-            mouseX > obj.x &&
-            mouseX < obj.x + obj.w &&
-            mouseY > obj.y &&
-            mouseY < obj.y + obj.h
-        ){
+            x > obj.x &&
+            x < obj.x + obj.w &&
+            y > obj.y &&
+            y < obj.y + obj.h
+        ) {
             if (obj.type === "bomb") {
                 triggerGameOver();
                 return;
             }
-            slices.push({ x: obj.x, y: obj.y, img:splashImg, alpha:1 });
-            fruits.splice(i,1);
+            slices.push({ x: obj.x, y: obj.y, img: splashImg, alpha: 1 });
+            fruits.splice(i, 1);
             score++;
         }
     }
+}
+
+// Mouse (PC)
+canvas.addEventListener("pointermove", (e) => {
+    if (gameOver) return;
+    const rect = canvas.getBoundingClientRect();
+    handleSlice(e.clientX - rect.left, e.clientY - rect.top);
 });
 
+// Touch (Mobile)
+canvas.addEventListener("touchstart", (e) => {
+    const t = e.touches[0];
+    const rect = canvas.getBoundingClientRect();
+    handleSlice(t.clientX - rect.left, t.clientY - rect.top);
+});
+
+// Touch movefhdrhd
+canvas.addEventListener("touchmove", (e) => {
+    const t = e.touches[0];
+    const rect = canvas.getBoundingClientRect();
+    handleSlice(t.clientX - rect.left, t.clientY - rect.top);
+});
+
+// RESTART
 overlay.addEventListener("click", () => {
-    if (gameOver) {
-        startGame();
-    }
+    if (gameOver) startGame();
 });
 
-restartBtn.addEventListener("click",(ev) => {
+overlay.addEventListener("touchstart", () => {
+    if (gameOver) startGame();
+});
+
+restartBtn.addEventListener("click", (ev) => {
     ev.stopPropagation();
     if (gameOver) startGame();
 });
 
+// GAME OVER
 function triggerGameOver() {
-    gameOver= true;
+    gameOver = true;
     stopSpawning();
     finalScoreEI.textContent = `Score: ${score}`;
     overlay.classList.remove('hidden');
+
     ctx.fillStyle = "rgba(0,0,0,0.4)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+
     ctx.fillStyle = "white";
     ctx.font = "70px Arial";
     ctx.textAlign = "center";
     ctx.fillText("GAME OVER", canvas.width / 2, canvas.height / 2 - 50);
+
     ctx.font = "40px Arial";
     ctx.fillText(`Score: ${score}`, canvas.width / 2, canvas.height / 2 + 10);
+
     ctx.font = "28px Arial";
     ctx.fillText("click anywhere to restart", canvas.width / 2, canvas.height / 2 + 70);
 }
